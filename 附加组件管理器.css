@@ -1,0 +1,347 @@
+@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+@-moz-document url("about:addons") {  
+#addons-page{
+  padding:0 !important;
+}
+.main-content {
+  -moz-padding-start:0 !important;
+  margin-right:-48px !important;
+  padding-bottom:0 !important;
+}  
+
+/*============================左侧============================*/
+
+/*整体*/
+#categories {
+    width:250px!important;
+    background: #424e5a url("chrome://userchromejs/content/01.png") left bottom no-repeat!important;
+    margin:0!important;
+    padding:80px 0 0!important;
+    border-right: 1px #ccc solid !important;
+}
+#show-disabled-unsigned-extensions,#nav-header{display: none !important;}
+/*检查更新按钮和搜索框*/
+#header{
+	position:fixed !important;
+	margin:0!important;
+  margin-top: 30px !important;
+  left:0 !important;
+	z-index:99;
+}
+/* 搜索框*/
+#header-search{
+  width:240px !important;
+}
+/*检查更新按钮*/  
+.header-button{
+  position:absolute !important;
+  margin-left:200px!important;
+  margin-bottom: -73px !important;
+  padding-top: 0 !important;
+  background:none!important;
+  border:none !important;
+  list-style-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAABdUlEQVQ4jZ2Tu0pDQRCGD4JaipWdoIVFkCDoI9hZ2Ai+gKazsLISLQQtAhYikiZFkJiLCJbpA1qJom9gQCwiBAKSuDufzR4zOTmXHAe2GOafb2ZnZz0vwYBtoCMiHWttLkmfaMAFAyulTS4BDWDS+TPAswK+ArMuNgc8ALUoWEElPgHnQNv54g4i8mWMKQIfvthaWw4Dnqnkcc3X5qO6vA6BVoF9d2ohsGLcDA9UQgvIhmiywLvSHUXBJoBvJzLAQkzhpcDVM39Ba20OuAJelOAm8hoDaPD6b8ClJzL0Br6TuMDATnDeIoIXaN0P7v4TaDxjzCZwDDQVuDoG8FbpK8aYrV6vtxwUWSewKR6lG1f1UAlbwGqIZg21NiJyHwf0v59+qRqDxa4zau1+v78SBjsNgY1lItIFpoeAInKnVqjpuv1RRXShPLCn/AYwNdKliNSBiup6HiirxE9gUcU3rLWFyBlGzHVdAR9TJUcAM0DHnZMk/S/K6zm436aOkgAAAABJRU5ErkJggg==")!important;
+}
+.toolbarbutton-menu-dropmarker,#back-btn,#forward-btn{display:none !Important;}
+/*项目分类*/
+.category:not([disabled]){
+  height:35px !important;
+  padding:0px 20px!important;
+  direction:rtl !important;
+  color:#ddd!important;
+  border: 0 !important;
+}
+/*当前项*/
+.category[selected="true"] {
+  background: -moz-linear-gradient(right, #0be, #0be 6px, #222 6px) !important;
+  color:#fff !important;
+}
+.category:not([selected="true"]):hover {
+	background:#5f6972 !important;
+/*  color:#000!important;*/
+}
+/*分类名*/
+.category-name{
+  display:block !important;
+}
+/* 显示计数*/
+.addon {
+	counter-increment: addoncount !important;
+  height:34px !important;
+}
+.addon[active="false"] {
+	counter-increment: disabled !important;
+}
+#addon-list:after {
+	content: "("counter(addoncount)" 启用, "counter(disabled)" 禁用)" !important;
+	position: fixed ;
+	top: 50px ;
+	left: 80px ;
+	color:#ddd ;
+  font-size:14px ;
+}
+
+/*隐藏左侧类别图标*/
+.category-icon {
+  display:none !Important;
+  height:25px!important;
+  width:25px!important;
+}
+.category {
+	opacity:1 !important;
+}  
+#category-extension::after,#category-plugin::after,#category-theme::after,#category-locale:after{
+  font-size: 15px;
+  position: absolute;
+  margin-left:140px;
+  margin-bottom: 2px;
+}
+#category-extension::after{
+  content:"用户";
+}  
+#category-plugin::after{
+  content:"外部";
+}  
+#category-theme::after{
+  content:"皮肤";
+}    
+#category-locale::after{
+  content:"默认";
+} 
+/*项目排序*/
+#category-search,[name="搜索"]{
+  -moz-box-ordinal-group:1 !important;
+}
+#category-discover,[name="获取附加组件"]{
+  -moz-box-ordinal-group:2 !important;
+}
+#category-extension,[name="扩展"]{
+  -moz-box-ordinal-group: 3 !important;
+}
+#category-userstyle,[name="用户样式"]{
+  -moz-box-ordinal-group: 4 !important;
+}
+#category-greasemonkey-user-script,[name="用户脚本"]{
+  -moz-box-ordinal-group: 5 !important;
+}
+#category-userchromejs,[name="UC 脚本"]{
+  -moz-box-ordinal-group: 6 !important;
+}
+#category-plugin,[name="插件"]{
+  -moz-box-ordinal-group: 7 !important;
+}
+#category-theme,[name="外观"]{
+  -moz-box-ordinal-group: 8 !important;
+}
+#category-locale,[name="语言"]{
+  -moz-box-ordinal-group: 9 !important;
+}
+#category-dictionary,[name="字典"]{
+  -moz-box-ordinal-group: 10 !important;
+}
+#category-availableUpdates,[name="可用更新"]{
+  -moz-box-ordinal-group: 11 !important;
+}
+#category-recentUpdates,[name="最近更新"]{
+  -moz-box-ordinal-group: 12 !important;
+}
+#category-service,[name="服务"]{
+  display: none !important;
+}  
+#category-experiment,[name="实验"]{
+  display: none !important;
+}    
+/*============================右侧============================*/
+
+/*右侧项目名称*/
+.box-inherit.scrollbox-innerbox{
+  overflow-x:hidden!important;
+  border: 0 !important;
+}  
+.addon{
+  background: #fff !important;
+  padding:0!important;
+  border-bottom:1px solid #ccc !important;
+  border-left: 0 !important;
+} 
+.addon[active="false"]{
+  background-color:#ddd!important;
+}
+.addon:hover{
+  background-color:#eee!important;
+}
+.addon[selected]{
+  background-image: repeating-linear-gradient(-45deg, #cef, #cef 8px, transparent 8px, transparent 16px) !important;
+}    
+.addon *  {
+  vertical-align: middle !important;
+  font-size: 100% !important;
+  white-space: nowrap !important;
+} 
+.warning{
+  display:none !important;
+}  
+#addon-list .content-container{
+  margin-top:-8px !important;
+  margin-bottom:-8px !important;
+}
+/*图标 */ 
+#list-view > #addon-list .icon-container,.icon {
+	height: 16px !important;
+	width: 16px !important;
+  margin-top: 2px !important;
+}
+
+#list-view > #addon-list .content-inner-container {
+  display: inline-table !important;
+}
+
+/***安装时间和说明位置***/
+/*名称，时间*/  
+#list-view > #addon-list .basicinfo-container {
+  width:30% !important;
+  margin-bottom:-15px !important;
+  margin-top:16px !important;
+  display: inline-table !important;
+}
+/*名称*/  
+#list-view > #addon-list .name-container {
+  width: 240px !important;
+  display: inline-block !important;
+}
+
+/*时间*/
+#list-view > #addon-list .date-updated {
+  display: -moz-box !important;
+  margin-left:110px !important;
+}
+  
+/*描述，更多，按钮*/
+#list-view > #addon-list .advancedinfo-container {
+  width: -moz-calc(100% - 500px)!important;
+  min-width: 150px !important;
+  float:right !important;
+  height: 28px !important;
+  margin:-4px 0 0!important;
+}
+#list-view > #addon-list .description-outer-container {
+  width:100%!important;
+  margin-top:-5px!important;
+}
+.description-container{
+  display: inline-table !important;
+}
+/*.details.button-link{
+  height: 24px !important;
+}*/ 
+.addon-control .box-inherit.button-box{
+  margin-top: 2px !important;
+}
+.status-control-wrapper{
+  margin-right:20px !important;
+}
+@media all and (max-width:1250px){
+  #list-view > #addon-list .date-updated{
+    display:none !important;
+  }
+}
+#list-view > #addon-list .description {
+  width: -moz-calc(100% - 150px) !important;
+}  
+/*按钮*/
+#list-view > #addon-list .status-control-wrapper {
+  width: 250px !important;
+  margin-top:4px !important;
+  -moz-box-pack: end !important;
+}
+.addon-control{
+  max-height: 24px !important;
+  min-height: 24px !important;
+}
+.box-inherit.button-box{
+  margin-top:3px !important;
+}
+#userstyle-footer,.update-available-notice,.warning>.button-link{
+  display: none !important;
+}
+
+/*扩展版本号*/
+.addon .name-container > spacer {
+-moz-binding: url('data:application/xml,\
+\
+<?xml version="1.0"?>\%0A\
+<bindings xmlns="http://www.mozilla.org/xbl">\%0A\
+<binding id="addonversion">\%0A\
+<implementation>\%0A\
+<constructor>\%0A\
+<![CDATA[\%0A\
+var richlistitem = document.getBindingParent(this);\%0A\
+\%0A\
+var nameLabel = document.getAnonymousElementByAttribute(richlistitem, "anonid", "name");\%0A\
+var label = richlistitem._version = document.createElement("label");\%0A\
+label.setAttribute("anonid", label.className = "version");\%0A\
+this.parentNode.insertBefore(label, nameLabel.nextSibling);\%0A\
+var addon = richlistitem.mAddon;\%0A\
+shouldShowVersionNumber(addon) ? label.value = addon.version : label.hidden = true;\%0A\
+\%0A\
+var str = \'this._icon.src = "";\\n\';\%0A\
+richlistitem._initWithAddon = eval(`(${\%0A\
+String.replace(richlistitem._initWithAddon, str, [str,\%0A\
+" if (shouldShowVersionNumber(this.mAddon))",\%0A\
+" this._version.value = this.mAddon.version;",\%0A\
+" else",\%0A\
+" this._version.hidden = true;\\n"\%0A\
+].join("\\n"))\%0A\
+})`);\%0A\
+str = \'this._showStatus("update-available");\\n\';\%0A\
+richlistitem.onNewInstall = eval(`(${\%0A\
+String.replace(richlistitem.onNewInstall, str, str +\%0A\
+" this._updateUpgradeInfo();"\%0A\
+)\%0A\
+})`);\%0A\
+richlistitem._updateUpgradeInfo = function _updateUpgradeInfo() {\%0A\
+// Only update the version string if we\'re displaying the upgrade info\%0A\
+if (this.hasAttribute("upgrade") && shouldShowVersionNumber(this.mAddon))\%0A\
+this._version.value = this.mManualUpdate.version;\%0A\
+}\%0A\
+]]>\%0A\
+</constructor>\%0A\
+</implementation>\%0A\
+</binding>\%0A\
+</bindings>\
+\
+') !important;
+}
+  
+/*附加组件样式ID*/
+.addon[type="userstyle"] .date-updated{
+  opacity: 0 !important;
+} 
+.addon[type="userstyle"]::after {
+  content:"样式 ID：" attr(value) !important;
+  position: absolute !important;
+  margin: -21px 355px 0!important;
+  font-size: 12px !important;
+}
+[active="false"]::after {
+  color: #999 !important;
+}
+/*顶栏*/  
+.view-header{
+  padding:0 16px 0 0!important;
+}  
+.view-header button{
+  margin: 8px !important;
+  padding:0 4px!important;
+  height:26px !important;
+  min-height:26px !important;
+}  
+#list-view .text-link{
+  margin: 8px !important;
+  padding:4px 12px!important;
+}
+/*更多信息*/
+  .view-pane.addon-view{background: none !important;}
+  .detail-view-container .addon-control .box-inherit.button-box{margin-top: 0px !important;}
+  setting *{/*background: none !important;*/border-radius: 0 !important;}
+}
